@@ -2,6 +2,7 @@ package com.megacitycab.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 public class Booking {
     private int id;
@@ -18,12 +19,12 @@ public class Booking {
     private double discount;
     private double totalPrice;
     private String status;
-    private Date createdAt;
+    private Timestamp createdAt;
 
     
     public Booking(int id, int userId, int driverId, String pickupLocation, String dropoffLocation,
                    Date rideDate, Time rideTime, String cabType, double distance, double price, 
-                   double tax, double discount, double totalPrice, String status, Date createdAt) {
+                   double tax, double discount, double totalPrice, String status, Timestamp createdAt) {
         this.id = id;
         this.userId = userId;
         this.driverId = driverId;
@@ -84,8 +85,8 @@ public class Booking {
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    public Date getCreatedAt() { return createdAt; }
-    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+    public Timestamp getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
 
     
 }

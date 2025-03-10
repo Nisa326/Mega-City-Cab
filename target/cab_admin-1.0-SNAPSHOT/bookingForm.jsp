@@ -1,24 +1,54 @@
+<%@page import="com.megacitycab.model.Driver"%>
+<%@page import="com.megacitycab.model.Car"%>
+<%@page import="com.megacitycab.model.User"%>
+<%@page import="java.util.List"%>
 <!-- Booking Form Modal -->
-<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="bookingModalLabel">Book a Ride</h5>
+                <h5 class="modal-title" id="formModalLabel">Add Booking</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- Booking Form -->
                 <form action="ManageBookingServlet" method="post" id="bookingForm">
-                    <input type="hidden" name="action" value="addBooking">
+                    <input type="hidden" name="action" id="formAction" value="addBooking">
                     <input type="hidden" name="bookingId" id="booking-id">
 
                     <div class="mb-3">
-                        <label for="booking-userId" class="form-label">User ID</label>
-                        <input type="number" class="form-control" name="userId" id="booking-userId" required>
+                        <label for="booking-userId" class="form-label">User Name</label>
+<!--                        <input type="number" class="form-control" name="userId" id="booking-userId" required>-->
+                        <select class="form-control" name="userId" id="booking-userId" required>
+                            <option value="">Select User</option>
+                            <% 
+                                List<User> userList = (List<User>) request.getAttribute("userList");
+                                if (userList != null) {
+                                    for (User user : userList) {
+                            %>
+                            <option value="<%= user.getId() %>"><%= user.getFullname() %></option>
+                            <% 
+                                    }
+                                }
+                            %>
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label for="booking-driverId" class="form-label">Driver ID</label>
-                        <input type="number" class="form-control" name="driverId" id="booking-driverId" required>
+                        <label for="booking-driverId" class="form-label">Select Car / Driver Name</label>
+<!--                        <input type="number" class="form-control" name="driverId" id="booking-driverId" required>-->
+                        <select class="form-control" name="driverId" id="booking-driverId" required>
+                            <option value="">Car / Driver Name</option>
+                            <% 
+                                List<Car> carList = (List<Car>) request.getAttribute("carList");
+                                if (carList != null) {
+                                    for (Car car : carList) {
+                            %>
+                            <option value="<%= car.getId() %>"><%= car.getPlateNumber() %></option>
+                            <% 
+                                    }
+                                }
+                            %>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="booking-pickup" class="form-label">Pickup Location</label>
@@ -74,7 +104,7 @@
                             <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100" id="bookingSubmitButton">Book Ride</button>
+                    <button type="submit" class="btn btn-primary w-100" id="formSubmitButton">Add Booking</button>
                 </form>
             </div>
         </div>

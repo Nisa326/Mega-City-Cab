@@ -20,21 +20,21 @@
                     </div>-->
 
                     <div class="mb-3">
-    <label for="car-driver_id" class="form-label">Driver</label>
-    <select class="form-control" name="driver_id" id="car-driver_id" required>
-        <option value="">Select Driver</option>
-        <% 
-            List<Driver> driverList = (List<Driver>) request.getAttribute("driverList");
-            if (driverList != null) {
-                for (Driver driver : driverList) {
-        %>
-        <option value="<%= driver.getId() %>"><%= driver.getFullname() %></option>
-        <% 
-                }
-            }
-        %>
-    </select>
-</div>
+                        <label for="car-driver_id" class="form-label">Driver</label>
+                        <select class="form-control" name="driver_id" id="car-driver_id" required>
+                            <option value="">Select Driver</option>
+                            <% 
+                                List<Driver> driverList = (List<Driver>) request.getAttribute("driverList");
+                                if (driverList != null) {
+                                    for (Driver driver : driverList) {
+                            %>
+                            <option value="<%= driver.getId() %>"><%= driver.getFullname() %></option>
+                            <% 
+                                    }
+                                }
+                            %>
+                        </select>
+                    </div>
 
                     <div class="mb-3">
                         <label for="car-model" class="form-label">Model</label>
