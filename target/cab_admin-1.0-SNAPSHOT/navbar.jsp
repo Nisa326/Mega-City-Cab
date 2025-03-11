@@ -15,25 +15,16 @@
         <div class="collapse navbar-collapse" id="adminNavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="adminPanel.jsp">
-                        <i class="bi bi-house-door"></i> Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="ManageUserServlet">
                         <i class="bi bi-people"></i> Manage Users
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="manageBookings.jsp">
+                    <a class="nav-link" href="ManageBookingServlet">
                         <i class="bi bi-calendar-check"></i> Manage Bookings
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="reports.jsp">
-                        <i class="bi bi-file-earmark-bar-graph"></i> Reports
-                    </a>
-                </li>
+                
             </ul>
 
             <!-- Admin Profile Dropdown -->

@@ -1,6 +1,7 @@
 import com.megacitycab.model.Booking;
 import com.megacitycab.model.Car;
 import com.megacitycab.model.User;
+import com.megacitycab.model.Place;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,6 +29,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
     List<Booking> bookingList = new ArrayList<>();
     List<User> userList = new ArrayList<>();
     List<Car> carList = new ArrayList<>();
+    List<Place> placeList = new ArrayList<>();
 
     // Connect to the database and retrieve data
     try (Connection conn = DBConnection.getConnection()) {
@@ -102,11 +104,24 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
             );
             carList.add(car);
         }
+        
+        // Fetch all cars
+        String placeSql = "SELECT * FROM places"; // Assuming 'place' table contains car info
+        PreparedStatement placeStmt = conn.prepareStatement(placeSql);
+        ResultSet placeRs = placeStmt.executeQuery();
+        while (placeRs.next()) {
+            Place place = new Place(
+                placeRs.getInt("id"),
+                placeRs.getString("place_name")                
+            );
+            placeList.add(place);
+        }
 
         // Set attributes for use in the JSP
         request.setAttribute("bookingList", bookingList);
         request.setAttribute("userList", userList);
         request.setAttribute("carList", carList);
+        request.setAttribute("placeList", placeList);
 
         // Forward the request to the JSP page
         RequestDispatcher dispatcher = request.getRequestDispatcher("manageBooking.jsp");
