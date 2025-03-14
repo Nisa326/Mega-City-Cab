@@ -15,4 +15,5 @@ ManagePlaceServlet.class
 com\mycompany\cab_admin\resources\JakartaEE10Resource.class
 ManageAdminServlet.class
 com\megacitycab\model\User.class
+ManagePaymentServlet.class
 com\megacitycab\model\Driver.class
